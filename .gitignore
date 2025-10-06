@@ -1,3 +1,8 @@
+# project-specific settings
+
+01_data/01_raw/02_unpacked/*
+!01_data/01_raw/02_unpacked/.gitkeep
+
 # Python part of the .gitignore
 # Byte-compiled / optimized / DLL files
 __pycache__/
