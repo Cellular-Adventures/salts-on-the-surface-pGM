@@ -1,0 +1,36 @@
+salt_colors:
+  NaCl: "#a6cee3"
+  NH4Cl: "#1f78b4"
+  Na2SO4: "#b2df8a"
+  NH42SO4: "#33a02c"
+  NaAc: "#fb9a99"
+  Water: "#222222"
+
+salt_labels:
+  NaCl: "$\\mathrm{NaCl}$"
+  NH4Cl: "$\\mathrm{NH_4Cl}$"
+  Na2SO4: "$\\mathrm{Na_2SO_4}$"
+  NH42SO4: "$\\mathrm{(NH_4)_2SO_4}$"
+  NaAc: "$\\mathrm{NaCH_3COO}$"
+  Water: "$\\mathrm{H_2O}$"
+
+markers:
+  NaCl: "^"
+  NH4Cl: "v"
+  NH42SO4: "s"
+  Na2SO4: "D"
+  NaAc: "o"
+  Water: "x"
+
+positions:
+  1: 172
+  2: 152
+  3: 133
+  4: 114
+  5: 94
+  6: 76
+  7: 57
+  8: 39
+  9: 19
+
+d_column: 192

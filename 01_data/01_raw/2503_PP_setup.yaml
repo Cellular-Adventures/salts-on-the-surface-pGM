@@ -1,0 +1,53 @@
+calibrations:
+  - dir: 'C:\Users\rikvolger\Documents\Codebase\salts-on-the-surface-pGM\01_data\01_raw\02_unpacked\20250313 Pressure probe calibration\'
+    file:
+      prefix: '2025-03-13_'
+      postfix: '_pressure probe voltage.tdms'
+    probes:
+      - channel: 'Dev1/ai0'
+        name: 'Bottom probe'
+        height: 575
+      - channel: 'Dev1/ai1'
+        name: 'Top probe'
+        height: 750
+    measurements:
+      - timestamp: "141809"
+        waterlevel: 0
+      - timestamp: "143510"
+        waterlevel: 550
+      - timestamp: "143611"
+        waterlevel: 586
+      - timestamp: "143705"
+        waterlevel: 623
+      - timestamp: "143758"
+        waterlevel: 658
+      - timestamp: "143902"
+        waterlevel: 678
+      - timestamp: "143958"
+        waterlevel: 699
+      - timestamp: "144044"
+        waterlevel: 729
+      - timestamp: "144319"
+        waterlevel: 758
+      - timestamp: "144424"
+        waterlevel: 790
+      - timestamp: "144521"
+        waterlevel: 815
+      - timestamp: "144618"
+        waterlevel: 843
+      - timestamp: "144712"
+        waterlevel: 869
+      - timestamp: "144803"
+        waterlevel: 895
+      - timestamp: "144855"
+        waterlevel: 929
+      - timestamp: "144955"
+        waterlevel: 957
+      - timestamp: "145047"
+        waterlevel: 987
+      - timestamp: "145140"
+        waterlevel: 1000
+      - timestamp: "145500"
+        waterlevel: 1048
+      - timestamp: "145551"
+        waterlevel: 1081

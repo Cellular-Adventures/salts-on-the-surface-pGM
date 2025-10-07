@@ -29,14 +29,15 @@ implemented in Julia.
 # Usage
 Find the raw data (zipped) (either in `01_data/01_raw/01_zipped` or somewhere online. TBD). Unpack the data into `01_data/01_raw/02_unpacked`.
 
-Run `consolidate_experiments.py` (`expand_input` in old setup) to run through the raw data and make an overview of all experiments, their concentrations and timestamps.
+Run `consolidate_experiments.py` (`expand_input` in old setup) to run through the raw data and make an overview of all experiments, their concentrations and timestamps. This script outputs `consolidated-experiment-logs.csv`
 
-Run `extract_fluid_properties.py` to expand the output of `consolidate_experiments.py` with the fluid properties for each experiment.
-TODO make this output a csv file instead of h5. More insightful for the casual user.
+Run `extract_fluid_properties.py` to expand the output of `consolidate_experiments.py` with the fluid properties for each experiment. This script outputs `exp-with-fluid-properties.csv`.
 
-Run `pre_process.py` to extract FP and PP data for the experiments. The output of this operation cannot be properly captured in a csv file anymore, so the output is an h5-formatted pandas dataframe.
+Run `calibrate_pressure_probe.py` to get the pressure probe calibration. This is needed to convert the raw signals to a hydrostatic pressure, and thus to a gas fraction. This script will generate figures of the regression and `probe-characterization.yaml` containing the regression parameters.
 
-Run `process_experiments.py` to create a dataframe that combines all data for a single concentration in a single row. Expands data with mean holdups from PP and FP, standard deviation of those, bubble size distributions, characteristic bubble sizes of that distribution, interfacial area, holdup profile equation parameters
+Run `read_experiment_data.py` to extract FP and PP data for the experiments. The output of this operation cannot be properly captured in a csv file anymore, so the output is an h5-formatted pandas dataframe `consolidated-measurement-data.h5` with the actual data in the `['data']` field.
+
+Run `process_experiments.py` to create a dataframe `per-experiment-data.h5` that combines all data for a single concentration in a single row. Expands data with mean holdups from PP and FP, standard deviation of those, bubble size distributions, characteristic bubble sizes of that distribution, interfacial area, holdup profile equation parameters
 
 Run `extract_figure_data.py` to create dedicated csv or h5 files of the data underlying each final figure.
 
