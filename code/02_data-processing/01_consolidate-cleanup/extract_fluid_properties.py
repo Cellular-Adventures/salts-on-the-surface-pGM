@@ -126,7 +126,7 @@ MW = {
 if __name__ == "__main__":
     # Load bubbles dataframe
     input_df = pd.read_csv(
-        '01_data/02_processed/consolidated-experiment-logs.csv',
+        'data/02_processed/consolidated-experiment-logs.csv',
         dtype={
             "Exp. No.": int,
             "Salt": str,
@@ -157,7 +157,7 @@ if __name__ == "__main__":
     output_df['Surface tension'] = pd.Series(dtype='float', index=output_df.index)
 
     jl.println("Printing from Julia!")
-    jl.include("04_pGM-model/code/main.jl")
+    jl.include("code/04_pGM-model/code/main.jl")
     for i, exp in output_df.iterrows():
         c_mol = exp["Concentration (mol/l)"]
         salt = exp["Salt"]
@@ -190,4 +190,4 @@ if __name__ == "__main__":
         print(f"\rDone fluid properties of experiment {i}", end="", flush=True)
     print("\n")
 
-    output_df.to_csv("01_data/02_processed/exp-with-fluid-properties.csv")
+    output_df.to_csv("data/02_processed/exp-with-fluid-properties.csv")

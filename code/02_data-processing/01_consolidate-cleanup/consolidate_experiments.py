@@ -54,9 +54,9 @@ def check_inclusion(fp, pp):
 
 
 if __name__ == "__main__":
-    root_folder = Path("01_data/01_raw/02_unpacked")
+    root_folder = Path("data/01_raw/02_unpacked")
 
-    output_file = "01_data/02_processed/consolidated-experiment-logs.csv"
+    output_file = "data/02_processed/consolidated-experiment-logs.csv"
 
     # Dates of the folders with bubble measurements
     meas_dates = [

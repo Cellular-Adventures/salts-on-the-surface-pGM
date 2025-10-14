@@ -11,14 +11,14 @@ implemented in Julia.
 
 | Folder                    | Content                                       |
 | ------                    | -------                                       |
-| [**01_data**](#01_data)   |                                               |
+| [**data**](#data)   |                                               |
 | /01_raw                   | Raw measurement data                          |
 | /02_processed             | Processed measurement data                    |
-| [**02_data-processing**](#02_data-processing)|                            |
+| [**code/02_data-processing**](#code/02_data-processing)|                            |
 | /01_consolidate-cleanup   | Python files used to consolidate separate measurements into a full dataset |
 | /02_create-dataframe      | Python files used to summarize data in a `pandas` `DataFrame` |
 | [**03_create-figures**](#03_create-figures) | Python files to create individual figures     |
-| [**04_pGM-model**](#04_pgm-model)          | Git submodule: [GM_pressure](https://github.com/Cellular-Adventures/GM_pressure) |
+| [**code/04_pGM-model**](#code/04_pGM-model)          | Git submodule: [GM_pressure](https://github.com/Cellular-Adventures/GM_pressure) |
 | [**05_usage-examples**](#05_usage-examples) |                             |
 | ...to be filled           |                                               |
 | [**06_figures**](#06_figures) | Folders with the `png`, `svg` and `eps` versions of the figures |
@@ -28,11 +28,11 @@ implemented in Julia.
 <!-- [ ] write instructions on how to clone the repo, taking submodule into account -->
 ...
 
-## 01_data
+## data
 ### Unpacking data
-Find the raw data (zipped) (either in `01_data/01_raw/01_zipped` or somewhere online. TBD). Unpack the data into `01_data/01_raw/02_unpacked`.
+Find the raw data (zipped) (either in `data/01_raw/01_zipped` or somewhere online. TBD). Unpack the data into `data/01_raw/02_unpacked`.
 
-## 02_data-processing
+## code/02_data-processing
 ### Processing metadata
 Run `consolidate_experiments.py` (`expand_input` in old setup) to run through the raw data and make an overview of all experiments, their concentrations and timestamps. This script outputs `consolidated-experiment-logs.csv`
 
@@ -51,8 +51,8 @@ Run `process_experiments.py` to create a dataframe `per-experiment-data.h5` that
 ## 03_create-figures
 Use the files in `03_create-figures` to reproduce the individual figures.
 
-## 04_pGM-model
-The files in `04_pGM-model` are used in `extract_fluid_properties.py` to calculate the GM pressure for each concentration. This folder is a git submodule, with the original repo at https://github.com/Cellular-Adventures/GM_pressure. 
+## code/04_pGM-model
+The files in `code/04_pGM-model` are used in `extract_fluid_properties.py` to calculate the GM pressure for each concentration. This folder is a git submodule, with the original repo at https://github.com/Cellular-Adventures/GM_pressure. 
 
 ## 05_usage-examples
 `05_usage-examples` contains some further examples on how to use the pGM model implementation, both in Python and in Julia.

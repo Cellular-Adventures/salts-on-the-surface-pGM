@@ -9,7 +9,7 @@ from pathlib import Path
 # Reads raw data (voltage) from U:drive 
 # saves summary (bubbles / holdup) in data/preprocessed
 
-root_path = Path("01_data/01_raw/02_unpacked")
+root_path = Path("data/01_raw/02_unpacked")
 print(f"\nRoot: {root_path}")
 
 
@@ -174,11 +174,11 @@ MW = {
 }
 
 
-with open("01_data/02_processed/probe-characterization.yaml") as cal_yaml:
+with open("data/02_processed/probe-characterization.yaml") as cal_yaml:
     CALIBRATION = yaml.safe_load(cal_yaml)
 
 input_df = pd.read_csv(
-    "01_data/02_processed/exp-with-fluid-properties.csv",
+    "data/02_processed/exp-with-fluid-properties.csv",
     dtype={
         "Exp. No.": int,
         "Salt": str,
@@ -231,7 +231,7 @@ for i, row in input_df.iterrows():
     output_df.at[i, 'PP holdup'] = PP_holdup
 
 print("\rRead all files.                      \n")
-h5Store = pd.HDFStore('01_data/02_processed/consolidated_measurement_data.h5', 'w')
+h5Store = pd.HDFStore('data/02_processed/consolidated_measurement_data.h5', 'w')
 
 h5Store['data'] = output_df
 h5Store.close()

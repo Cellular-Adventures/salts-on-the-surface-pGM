@@ -1,5 +1,5 @@
 calibrations:
-  - dir: 'C:\Users\rikvolger\Documents\Codebase\salts-on-the-surface-pGM\01_data\01_raw\02_unpacked\20250313 Pressure probe calibration\'
+  - dir: 'C:\Users\rikvolger\Documents\Codebase\salts-on-the-surface-pGM\data\01_raw\02_unpacked\20250313 Pressure probe calibration\'
     file:
       prefix: '2025-03-13_'
       postfix: '_pressure probe voltage.tdms'

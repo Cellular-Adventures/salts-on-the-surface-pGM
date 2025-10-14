@@ -22,7 +22,7 @@ positions = plot_props["positions"]
 r_column = plot_props["d_column"] / 2
 
 # Load experiment database
-exp_h5 = pd.HDFStore("01_data/02_processed/per-experiment-data.h5")
+exp_h5 = pd.HDFStore("data/02_processed/per-experiment-data.h5")
 exp_df = exp_h5['data']
 exp_h5.close()
 

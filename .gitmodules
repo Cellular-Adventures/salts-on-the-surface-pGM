@@ -1,3 +1,3 @@
-[submodule "04_pGM-model"]
-	path = 04_pGM-model
+[submodule "code/04_pGM-model"]
+	path = code/04_pGM-model
 	url = https://github.com/Cellular-Adventures/GM_pressure.git

@@ -407,7 +407,7 @@ def interfacial_area_d23(d23, hu):
 
 if __name__ == "__main__":
     # Load data
-    bubble_h5 = pd.HDFStore("01_data/02_processed/consolidated_measurement_data.h5")
+    bubble_h5 = pd.HDFStore("data/02_processed/consolidated_measurement_data.h5")
     bubbles_df = bubble_h5['data']
     bubble_h5.close()
 
@@ -477,7 +477,7 @@ if __name__ == "__main__":
             output_df = process_a_data(output_df, boi, i)
             i += 1
 
-    h5Store = pd.HDFStore('01_data/02_processed/per-experiment-data.h5', 'w')
+    h5Store = pd.HDFStore('data/02_processed/per-experiment-data.h5', 'w')
 
     h5Store['data'] = output_df
     h5Store.close()

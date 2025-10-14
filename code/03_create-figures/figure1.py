@@ -3,7 +3,7 @@ import numpy as np
 from pathlib import Path
 import matplotlib.pyplot as plt
 
-root_data_folder = Path('01_data/02_processed/01_Literature-Data')
+root_data_folder = Path('data/02_processed/01_Literature-Data')
 
 d = {}
 d_keys = ["KCl", "NaCl", "MgSO4", "NaClO4", "HCl", "HClO4", "NaCl+HClO4",

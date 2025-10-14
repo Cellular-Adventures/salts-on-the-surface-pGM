@@ -8,8 +8,8 @@ from matplotlib.ticker import MultipleLocator
 
 g = 9.81    # [m/s2]
 density_water = 998.19      # [kg/m3]
-input_file = "01_data/01_raw/2503_PP_setup.yaml"
-output_file = "01_data/02_processed/probe-characterization.yaml"
+input_file = "data/01_raw/2503_PP_setup.yaml"
+output_file = "data/02_processed/probe-characterization.yaml"
 
 # import info from setup.yaml
 with open(input_file) as setup_file:
