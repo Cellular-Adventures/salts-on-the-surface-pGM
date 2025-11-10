@@ -138,8 +138,8 @@ for ax in fig.get_axes():
     # ax.tick_params(labelsize=12)
     ax.set_ylabel(r'$\mathrm{Coalescence\ [\%]}$')
     ax.label_outer()
-plt.savefig('06_figures/png/Fig01_LiteratureCoalescence.png', bbox_inches='tight', dpi=900)
-plt.savefig('06_figures/svg/Fig01_LiteratureCoalescence.svg')
-plt.savefig('06_figures/eps/Fig01_LiteratureCoalescence.eps')
+plt.savefig('results/figures/png/Fig01_LiteratureCoalescence.png', bbox_inches='tight', dpi=900)
+plt.savefig('results/figures/svg/Fig01_LiteratureCoalescence.svg')
+plt.savefig('results/figures/eps/Fig01_LiteratureCoalescence.eps')
 
 plt.show()

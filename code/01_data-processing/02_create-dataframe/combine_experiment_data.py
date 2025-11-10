@@ -4,7 +4,7 @@ import pandas as pd
 import scipy.optimize as scopt
 
 
-plot_properties_yaml = "06_figures/plot_properties.yaml"
+plot_properties_yaml = "results/figures/plot_properties.yaml"
 # Load plot properties
 with open(plot_properties_yaml) as prop_yaml:
     plot_props = yaml.safe_load(prop_yaml)

@@ -14,14 +14,12 @@ implemented in Julia.
 | [**data**](#data)   |                                               |
 | /01_raw                   | Raw measurement data                          |
 | /02_processed             | Processed measurement data                    |
-| [**code/02_data-processing**](#code/02_data-processing)|                            |
+| [**code/01_data-processing**](#code/01_data-processing)|                            |
 | /01_consolidate-cleanup   | Python files used to consolidate separate measurements into a full dataset |
 | /02_create-dataframe      | Python files used to summarize data in a `pandas` `DataFrame` |
-| [**code/03_create-figures**](#code/03_create-figures) | Python files to create individual figures     |
-| [**code/04_pGM-model**](#code/04_pGM-model)          | Git submodule: [GM_pressure](https://github.com/Cellular-Adventures/GM_pressure) |
-| [**05_usage-examples**](#05_usage-examples) |                             |
-| ...to be filled           |                                               |
-| [**06_figures**](#06_figures) | Folders with the `png`, `svg` and `eps` versions of the figures |
+| [**code/02_create-figures**](#code/02_create-figures) | Python files to create individual figures     |
+| [**code/03_pGM-model**](#code/03_pGM-model)          | Git submodule: [GM_pressure](https://github.com/Cellular-Adventures/GM_pressure) |
+| [**results/figures**](#results/figures) | Folders with the `png`, `svg` and `eps` versions of the figures |
 
 # Usage
 ## Cloning the repo
@@ -31,7 +29,7 @@ Clone the repo in however way you want to. The repo contains the zipped raw data
 ## Basic requirements
 You will need to have `python` and `julia` installed. We rely on `conda` for `python` package management, so also make sure you have that available. The setup was tested with Anaconda, but it might also work with miniconda or other setups.
 
-`julia` is best installed through juliaup. This setup was tested with Windows, where it's available through the Microsoft Store.
+`julia` is best installed through juliaup. This setup was tested with Windows, where the `julia`install through the Microsoft Store uses juliaup. If you're using another operating system, check the instructions given by the lovely `julia` people.
 
 ## Python environment
 The `python` environment can be generated through conda:
@@ -42,7 +40,7 @@ conda activate salts-on-the-surface-pGM
 ```
 
 ## Julia environment for pGM
-The `julia` environment is a bit more tricky. We rely on [JuliaCall](https://juliapy.github.io/PythonCall.jl/stable/juliacall/) and [PyJuliaPkg](https://github.com/JuliaPy/PyJuliaPkg) to make the link between Python and Julia, and these modules also dictate the install instructions.
+The `julia` environment is a bit more tricky. We rely on [JuliaCall](https://juliapy.github.io/PythonCall.jl/stable/juliacall/) to make the link between Python and Julia, and on [PyJuliaPkg](https://github.com/JuliaPy/PyJuliaPkg) for the package management. These modules also dictate the install instructions.
 
 The packages required for the pGM model are summarized in `juliapkg.json`, but we need to make sure that PyJuliaPkg actually finds it. Because we are working in an anaconda environment (at least in my case), PyJuliaPkg will start looking for this file in there (for me at `C:\Users\rikvolger\anaconda3\envs\salts-on-the-surface-pGM`). Specifically, it will look in the folder `julia_env\pyjuliapkg`, which does not exist yet (if you've not ran any scripts using juliacall). Create this folder, and in there, paste the `juliapkg.json` file.
 
@@ -59,7 +57,7 @@ Now, if you run for example `process_literature_data.py`, it should output a bun
 ### Unpacking data
 Find the raw data (zipped) in `data/01_raw/01_zipped`. With your unzipper of choice (mine is 7zip), unpack the data into `data/01_raw/02_unpacked`. The literature data is expected in `data/01_raw/02_unpacked/01_Literature-Data`, the other data is expected directly in `data/01_raw/02_unpacked`.
 
-## code/02_data-processing
+## Data processing
 ### Processing metadata
 Run `consolidate_experiments.py` (`expand_input` in old setup) to run through the raw data and make an overview of all experiments, their concentrations and timestamps. This script outputs `consolidated-experiment-logs.csv`
 
@@ -75,11 +73,11 @@ Run `read_experiment_data.py` to extract FP and PP data for the experiments. The
 ### Group data per experiment
 Run `process_experiments.py` to create a dataframe `per-experiment-data.h5` that combines all data for a single concentration in a single row. Expands data with mean holdups from PP and FP, standard deviation of those, bubble size distributions, characteristic bubble sizes of that distribution, interfacial area, holdup profile equation parameters
 
-## code/03_create-figures
-Use the files in `03_create-figures` to reproduce the individual figures.
+## Creating figures
+Use the files in `code/02_create-figures` to reproduce the individual figures.
 
-## code/04_pGM-model
-The files in `code/04_pGM-model` are used in `extract_fluid_properties.py` to calculate the GM pressure for each concentration. This folder is a git submodule, with the original repo at https://github.com/Cellular-Adventures/GM_pressure. 
+## pGM Model
+The files in `code/03_pGM-model` are used in `extract_fluid_properties.py` to calculate the GM pressure for each concentration. This folder is a git submodule, with the original repo at https://github.com/Cellular-Adventures/GM_pressure. 
 
 # Results
 The results will appear in the `data/02_processed` folder (for the `.csv` and `.h5` files), and in the `results/figures/[eps|png|svg]` folders for the appropriate figure types. Each figure is saved in all three extensions. `png` for quick inspection, `svg` for post-processing in InkScape and `eps` for direct inclusion in LaTeX papers.

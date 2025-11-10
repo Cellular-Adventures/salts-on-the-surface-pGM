@@ -38,7 +38,7 @@ C_NaNO3_HCl, D_NaNO3_HCl = df_NaNO3_HCl[0], df_NaNO3_HCl[1]
 C_NaAc_KClO3, D_NaAc_KClO3 = df_NaAc_KClO3[0], df_NaAc_KClO3[1]
 jl.seval("using Logging")
 jl.seval("Logging.disable_logging(Logging.Warn)")
-jl.include("code/04_pGM-model/code/main.jl")
+jl.include("code/03_pGM-model/code/main.jl")
 
 # Hydrated radii
 ah_SO4 = 3.79e-10

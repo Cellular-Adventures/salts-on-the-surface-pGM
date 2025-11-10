@@ -4,7 +4,6 @@ import numpy as np
 import numpy.linalg as linalg
 from nptdms import TdmsFile
 from matplotlib import pyplot as plt
-from matplotlib.ticker import MultipleLocator
 
 g = 9.81    # [m/s2]
 density_water = 998.19      # [kg/m3]
@@ -110,8 +109,8 @@ for probe in database.keys():
     plt.title("Regression of voltage vs. pressure")
     # plt.ylim([0, 1500])
     plt.tight_layout()
-    plt.savefig(f"06_figures/PP_calibration/regression_{channel_names[probe]}.png", dpi=600)
-    
+    plt.savefig(f"results/figures/PP_calibration/regression_{channel_names[probe]}.png", dpi=600)
+
     # extrapolation to full measurement range
     x_plot_extra = np.linspace(min(x_meas), 10, 1000)
 
@@ -129,7 +128,7 @@ for probe in database.keys():
     plt.ylabel("Gauge pressure (Pa)")
     plt.title("Extrapolated 0-10 V")
     plt.tight_layout()
-    plt.savefig(f"06_figures/PP_calibration/extrapolation_{channel_names[probe]}.png", dpi=600)
+    plt.savefig(f"results/figures/PP_calibration/extrapolation_{channel_names[probe]}.png", dpi=600)
 
 with open(output_file, 'w+') as output_yaml:
     yaml.dump(probe_characterization, output_yaml)

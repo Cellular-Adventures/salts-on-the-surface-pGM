@@ -10,7 +10,7 @@ fontfam = 'sans-serif'
 plt.rcParams['font.family'] = fontfam
 plt.rcParams[f'font.{fontfam}'] = ['helvetica', 'arial', *plt.rcParams[f'font.{fontfam}']]
 
-plot_properties_yaml = "06_figures/plot_properties.yaml"
+plot_properties_yaml = "results/figures/plot_properties.yaml"
 # Load plot properties
 with open(plot_properties_yaml) as prop_yaml:
     plot_props = yaml.safe_load(prop_yaml)
@@ -28,9 +28,9 @@ exp_h5.close()
 
 salts = exp_df["Salt"].unique()
 
-png_path = Path("06_figures/png")
-svg_path = Path("06_figures/svg")
-eps_path = Path("06_figures/eps")
+png_path = Path("results/figures/png")
+svg_path = Path("results/figures/svg")
+eps_path = Path("results/figures/eps")
 
 water_df = exp_df.loc[exp_df["Salt"] == "Water"]
 # plot a comparison of interfacial area with some literature

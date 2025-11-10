@@ -10,7 +10,7 @@ fontfam = 'sans-serif'
 plt.rcParams['font.family'] = fontfam
 plt.rcParams[f'font.{fontfam}'] = ['helvetica', 'arial', *plt.rcParams[f'font.{fontfam}']]
 
-plot_properties_yaml = "06_figures/plot_properties.yaml"
+plot_properties_yaml = "results/figures/plot_properties.yaml"
 # Load plot properties
 with open(plot_properties_yaml) as prop_yaml:
     plot_props = yaml.safe_load(prop_yaml)
@@ -23,9 +23,9 @@ exp_h5 = pd.HDFStore("data/02_processed/per-experiment-data.h5")
 exp_df = exp_h5['data']
 exp_h5.close()
 
-png_path = Path("06_figures/png")
-svg_path = Path("06_figures/svg")
-eps_path = Path("06_figures/eps")
+png_path = Path("results/figures/png")
+svg_path = Path("results/figures/svg")
+eps_path = Path("results/figures/eps")
 
 # Left: BSD of position 5 with vertical line for median.
 # Right: Median over positions

@@ -157,7 +157,7 @@ if __name__ == "__main__":
     output_df['Surface tension'] = pd.Series(dtype='float', index=output_df.index)
 
     jl.println("Printing from Julia!")
-    jl.include("code/04_pGM-model/code/main.jl")
+    jl.include("code/03_pGM-model/code/main.jl")
     for i, exp in output_df.iterrows():
         c_mol = exp["Concentration (mol/l)"]
         salt = exp["Salt"]
