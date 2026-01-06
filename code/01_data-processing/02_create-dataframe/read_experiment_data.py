@@ -76,6 +76,26 @@ def get_holdup_signal(stream, log):
     return values, params
 
 
+def get_velocities(evt_path):
+    velocities = []
+    with open(evt_path) as evt_file:
+        evt_reader = csv.DictReader(evt_file, delimiter="\t")
+        for event in evt_reader:
+            if int(event['Valid']):
+                # convert to float (first change decimal to point)
+                size_float = float(event['Size'].replace(',', '.'))
+                # Super tiny bubble events - I don't trust them if based on entry
+                if size_float < 10 and event['VeloOut'] == "-1":
+                    continue
+                if event['Veloc'] != "-1":
+                    velocity = float(event['Veloc'].replace(',', '.'))
+                else:
+                    velocity = -1
+                velocities.append(velocity)
+
+    return np.array(velocities)
+
+
 def process_FP(fp_folder, input):
     evt_file = list(fp_folder.glob(f"*{input['FP Timestamp']}.evt"))
 
@@ -88,6 +108,7 @@ def process_FP(fp_folder, input):
     evt_file = evt_file[0]
 
     valid_bubbles = get_valid_bubbles(evt_file)
+    velocities = get_velocities(evt_file)
 
     evtlog_file = list(fp_folder.glob(f"*{input['FP Timestamp']}.evtlog"))[0]
     # some files don't have holdup. Skip those. Figure way to indicate.
@@ -99,7 +120,7 @@ def process_FP(fp_folder, input):
         hu_log_file = list(fp_folder.glob(f"*{input['FP Timestamp']}.binlog"))[0]
         FP_holdup_signal = get_holdup_signal(hu_stream_file, hu_log_file)
 
-    return valid_bubbles, FP_holdup, FP_holdup_signal
+    return valid_bubbles, velocities, FP_holdup, FP_holdup_signal
 
 
 def process_PP(pp_folder, input: pd.Series):
@@ -153,16 +174,17 @@ def pre_process(input_line):
     date_folder = root_path.glob(f'{date}*')
     date_folder = list(date_folder)     # We don't want fancy generator properties
 
+    assert len(date_folder) > 0, "Found no folder for this date"
     assert len(date_folder) == 1, "Found multiple folders for the same date"
     date_folder = date_folder[0]
 
-    valid_bubbles, FP_holdup, FP_holdup_signal = process_FP(
+    valid_bubbles, velocities, FP_holdup, FP_holdup_signal = process_FP(
         date_folder / "FP",
         input_line)
 
     PP_holdup = process_PP(date_folder / "PP", input_line)
 
-    return valid_bubbles, FP_holdup, FP_holdup_signal, PP_holdup
+    return valid_bubbles, velocities, FP_holdup, FP_holdup_signal, PP_holdup
 
 
 MW = {
@@ -207,6 +229,7 @@ input_df = pd.read_csv(
 output_df = input_df.copy()
 output_df['Valid bubbles'] = pd.Series(dtype='object', index=output_df.index)
 output_df['FP holdup'] = pd.Series(dtype='float', index=output_df.index)
+output_df['FP velocity'] = pd.Series(dtype='object', index=output_df.index)
 output_df['FP holdup bubbles'] = pd.Series(dtype='object', index=output_df.index)
 output_df['FP holdup frequency'] = pd.Series(dtype='float', index=output_df.index)
 output_df['FP holdup duration'] = pd.Series(dtype='float', index=output_df.index)
@@ -216,7 +239,7 @@ for i, row in input_df.iterrows():
     if row["Ignore"]:
         continue
     print(f"\rReading {row['Date']} - {row['FP Timestamp']}...   ", end='')
-    valid_bubbles, FP_holdup, FP_holdup_signal, PP_holdup = pre_process(row)
+    valid_bubbles, velocities, FP_holdup, FP_holdup_signal, PP_holdup = pre_process(row)
     FP_holdup_bubbles = FP_holdup_signal[0]
     FP_holdup_frequency = FP_holdup_signal[1]['f']
     FP_holdup_duration = FP_holdup_signal[1]['t']
@@ -225,6 +248,7 @@ for i, row in input_df.iterrows():
         input()
     output_df.at[i, 'Valid bubbles'] = valid_bubbles
     output_df.at[i, 'FP holdup'] = FP_holdup
+    output_df.at[i, 'FP velocity'] = velocities
     output_df.at[i, 'FP holdup bubbles'] = FP_holdup_bubbles
     output_df.at[i, 'FP holdup frequency'] = FP_holdup_frequency
     output_df.at[i, 'FP holdup duration'] = FP_holdup_duration
