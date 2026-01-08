@@ -42,6 +42,7 @@ hist_ax.set_ylabel("Count [-]")
 hist_ax.set_xlabel("Chord length [mm]")
 hist_ax.set_title(f"BSD at center\n({len(bsd_pos_5)} bubbles)")
 hist_ax.legend()
+hist_ax.text(-.05, 1.05, "a", fontsize=14, fontweight='bold', transform=hist_ax.transAxes)
 
 # Position 5 was done twice
 # pos_indexes = [0:8]
@@ -56,6 +57,7 @@ r_ax.set_xlabel("Normalized radius [-]")
 r_ax.set_title("Radial bubble size profile")
 r_ax.set_xlim((-1, 1))
 r_ax.set_ylim((0, 4))
+r_ax.text(-.05, 1.05, "b", fontsize=14, fontweight='bold', transform=r_ax.transAxes)
 # fix axes: y 0-3000; x -1 - 1
 
 fig.savefig(png_path / "Fig02_BSD_and_radial.png", dpi=900)
