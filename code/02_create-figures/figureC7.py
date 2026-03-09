@@ -166,8 +166,12 @@ scatter_hist(
 
 axs['histx'].set_xlim(axs['scatter'].get_xlim())
 axs['histy'].set_ylim(axs['scatter'].get_ylim())
-axs['scatter'].set_ylabel("Bubble velocity ($m/s$)")
-axs['scatter'].set_xlabel("Bubble size ($m$)")
+
+axs['histx'].set_ylabel('PD $(1/m)$')
+axs['histy'].set_xlabel('PD $(s/m)$')
+
+axs['scatter'].set_ylabel("Bubble velocity $(m/s)$")
+axs['scatter'].set_xlabel("Bubble size $(m)$")
 
 res_water = stats.linregress(bubbles['Water'][0], bubbles['Water'][1])
 res_salt = stats.linregress(bubbles['Na2SO4'][0], bubbles['Na2SO4'][1])

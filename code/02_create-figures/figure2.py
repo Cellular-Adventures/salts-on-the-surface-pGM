@@ -53,7 +53,7 @@ pos = water_df["FP Positions"].values[0][0:9]
 
 r_ax.plot(pos, median_all_pos, 'dk')
 r_ax.set_ylabel("$d_{B,median}$ [mm]")
-r_ax.set_xlabel("Normalized radius [-]")
+r_ax.set_xlabel("Normalized radial position [-]")
 r_ax.set_title("Radial bubble size profile")
 r_ax.set_xlim((-1, 1))
 r_ax.set_ylim((0, 4))
