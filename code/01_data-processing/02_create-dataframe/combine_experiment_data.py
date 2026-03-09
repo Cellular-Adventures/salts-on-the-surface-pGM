@@ -316,7 +316,7 @@ def process_a_data(output_df, boi, i):
     for d23_i in range(len(d23_meas)):
         d_B = pos_BSDs[d23_i]
         d23_meas[d23_i] = calc_d23(d_B)
-        d_B_median[d23_i] = np.median(d_B)
+        d_B_median[d23_i] = np.median(d_B) / 1000
 
     output_df.at[i, "d23"] = [d23_meas]
     output_df.at[i, "d32"] = [np.power(d23_meas, -1)]
